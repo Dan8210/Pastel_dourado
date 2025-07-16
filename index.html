@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pastel Dourado | Os Melhores Pastéis da Cidade</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        :root {
+            --amarelo: #FFD700;
+            --laranja: #FF6B00;
+            --laranja-claro: #FF8C00;
+            --branco: #FFFFFF;
+            --sombra: rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            background-color: #FFF9E6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(to right, var(--laranja), var(--laranja-claro));
+            color: var(--branco);
+            padding: 15px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px var(--sombra);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            font-size: 28px;
+            color: var(--amarelo);
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        nav a {
+            color: var(--branco);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--amarelo);
+        }
+
+        .cart-icon {
+            position: relative;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--amarelo);
+            color: var(--laranja);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 0.75rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 700;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            color: var(--branco);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(255, 107, 0, 0.8), rgba(255, 107, 0, 0.8)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23FFD700"/></svg>');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--branco);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--amarelo);
+            color: var(--laranja);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            background: #ffcc00;
+        }
+
+        /* Produtos */
+        .products {
+            padding: 50px 20px 70px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--laranja);
+            font-size: 2rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--amarelo);
+            border-radius: 2px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            display:flex;
+            flex-direction: column;
+            height: 100%;
+            background: var(--branco);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px var(--sombra);
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .product-image {
+            height: 200px;
+            background: var(--amarelo);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--laranja);
+            font-size: 4rem;
+        }
+
+        .product-info {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+                .product-info-1 {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 50px;
+        }
+
+        .product-info h3 {
+            color: var(--laranja);
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .product-info p {
+            min-height: 60px;
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .product-price {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price {
+            font-weight: 700;
+            color: var(--laranja);
+            font-size: 1.4rem;
+        }
+
+        .add-to-cart {
+            background: var(--laranja);
+            color: var(--branco);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .add-to-cart:hover {
+            background: #e05a00;
+        }
+
+        /* Sobre */
+        .about {
+            background: linear-gradient(to bottom, #fff, #FFF9E6);
+            padding: 60px 20px;
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            height: 350px;
+            background: var(--amarelo);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--laranja);
+            font-size: 5rem;
+            box-shadow: 0 10px 20px var(--sombra);
+        }
+
+        .about-content {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-content h2 {
+            color: var(--laranja);
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .about-content p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        /* Contato */
+        .contact {
+            padding: 60px 20px;
+            background: linear-gradient(to bottom, #FFF9E6, #fff);
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .contact-info, .contact-form {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .contact-info h2, .contact-form h2 {
+            color: var(--laranja);
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--laranja);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--branco);
+            font-size: 1.2rem;
+            margin-right: 15px;
+        }
+
+        .contact-text h3 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            color: var(--laranja);
+        }
+
+        .contact-form form {
+            display: grid;
+            gap: 15px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #555;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--laranja);
+            outline: none;
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--laranja);
+            color: var(--branco);
+            padding: 40px 20px 20px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            text-align: left;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--amarelo);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--branco);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--amarelo);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--amarelo);
+            color: var(--laranja);
+            border-radius: 50%;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+
+        .social-icons a:hover {
+            transform: translateY(-5px);
+            background: var(--branco);
+        }
+
+        .copyright {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 0.9rem;
+        }
+
+        /* Modal do Carrinho */
+        .cart-modal {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            max-width: 450px;
+            height: 100vh;
+            background: white;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            z-index: 2000;
+            transition: right 0.4s ease;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .cart-modal.open {
+            right: 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .cart-header h2 {
+            color: var(--laranja);
+            font-size: 1.8rem;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #777;
+        }
+
+        .cart-items {
+            margin-bottom: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .item-info {
+            flex: 1;
+        }
+
+        .item-name {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .item-price {
+            color: var(--laranja);
+            font-weight: 600;
+        }
+
+        .item-quantity {
+            display: flex;
+            align-items: center;
+            margin-top: 5px;
+        }
+
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            background: #eee;
+            border: none;
+            border-radius: 50%;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .quantity-value {
+            margin: 0 10px;
+        }
+
+        .remove-item {
+            background: none;
+            border: none;
+            color: #ff4d4d;
+            font-size: 1.2rem;
+            cursor: pointer;
+            margin-left: 15px;
+        }
+
+        .cart-totals {
+            background: #f9f9f9;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .total-row.frete {
+            border-top: 1px dashed #ddd;
+            padding-top: 10px;
+            margin-top: 10px;
+        }
+
+        .total-row.total {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--laranja);
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 2px solid #ddd;
+        }
+
+        .checkout-form {
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .shipping-options {
+            margin: 15px 0;
+        }
+
+        .shipping-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .shipping-option input {
+            margin-right: 10px;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1500;
+            display: none;
+        }
+
+        .overlay.show {
+            display: block;
+        }
+
+        /* Mobile Menu */
+        @media (max-width: 768px) {
+            nav ul {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                background: var(--laranja);
+                width: 100%;
+                height: calc(100vh - 70px);
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 40px;
+                transition: left 0.4s ease;
+                z-index: 999;
+            }
+
+            nav ul.active {
+                left: 0;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .about-container, .contact-container {
+                flex-direction: column;
+            }
+
+            .cart-modal {
+                width: 100%;
+                max-width: 100%;
+            }
+        }
+
+        /* Animations */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <i class="fas fa-crown"></i>
+                <h1>Pastel Dourado</h1>
+            </div>
+            <nav>
+                <ul id="menu">
+                    <li><a href="#home">Início</a></li>
+                    <li><a href="#products">Cardápio</a></li>
+                    <li><a href="#about">Sobre</a></li>
+                    <li><a href="#contact">Contato</a></li>
+                </ul>
+            </nav>
+            <div class="cart-icon" id="openCart">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count">0</span>
+            </div>
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h2>Os Melhores Pastéis da Região</h2>
+            <p>Experimente nossos pastéis artesanais feitos com ingredientes frescos e de alta qualidade. Sabor inigualável em cada mordida!</p>
+            <a href="#products" class="btn pulse">Ver Cardápio</a>
+        </div>
+    </section>
+
+    <!-- Produtos -->
+    <section class="products" id="products">
+        <h2 class="section-title">Nossos Sabores</h2>
+        <div class="products-grid">
+
+            <!-- Produto 1 -->
+            <div class="product-card">
+                <div class="product-image floating">
+                    <img src="PNG/fav-pastel.png" alt="PASTEL" style="width: 124px;">
+                </div>
+                <div class="product-info">
+                    <h3>Pastel de Carne </h3>
+                    <p>Carne (+Complementos).</p>
+                    <div class="product-price">
+                        <span class="price">R$ 10,00</span>
+                        <button class="add-to-cart" data-id="1" data-name="Pastel de Carne" data-price="10,00">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produto 2 -->
+            <div class="product-card">
+                <div class="product-image floating">
+                    <img src="PNG/fav-pastel.png" alt="PASTEL" style="width: 124px;">
+                </div>
+                <div class="product-info">
+                    <h3>Pastel de Queijo</h3>
+                    <p>Queijo (+Complementos).</p>
+                    <div class="product-price">
+                        <span class="price">R$ 10,00</span>
+                        <button class="add-to-cart" data-id="2" data-name="Pastel de Queijo" data-price="10,00">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produto 3 -->
+            <div class="product-card">
+                <div class="product-image floating">
+                    <img src="PNG/fav-pastel.png" alt="PASTEL" style="width: 124px;">
+                </div>
+                <div class="product-info">
+                    <h3>Pastel de Frango</h3>
+                    <p>Frango (+Complementos).</p>
+                    <div class="product-price">
+                        <span class="price">R$ 10,00</span>
+                        <button class="add-to-cart" data-id="3" data-name="Pastel de Frango" data-price="10,00">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produto 4 -->
+            <div class="product-card">
+                <div class="product-image floating">
+                    <img src="PNG/fav-pastel.png" alt="PASTEL" style="width: 124px;">
+                </div>
+                <div class="product-info">
+                    <h3>Pastel de Calabresa</h3>
+                    <p>Calabresa (+Complementos).</p>
+                    <div class="product-price">
+                        <span class="price">R$ 10,00</span>
+                        <button class="add-to-cart" data-id="4" data-name="Pastel de Calabresa" data-price="10,00">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produto 5 -->
+            <div class="product-card">
+                <div class="product-image floating">
+                    <img src="PNG/fav-pastel.png" alt="PASTEL" style="width: 124px;">
+                </div>
+                <div class="product-info">
+                    <h3>Pastel de Frango com Queijo</h3>
+                    <p>Frango, Queijo (+Complementos).</p>
+                    <div class="product-price">
+                        <span class="price">R$ 12,00</span>
+                        <button class="add-to-cart" data-id="5" data-name="Pastel de Frango com Queijo" data-price="12,00">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Produto 6 -->
+            <div class="product-card">
+                <div class="product-image floating">
+                    <img src="PNG/fav-pastel.png" alt="PASTEL" style="width: 124px;">
+                </div>
+                <div class="product-info">
+                    <h3>Pastel de Carne com Queijo</h3>
+                    <p>Carne, Queijo (+Complementos).</p>
+                    <div class="product-price">
+                        <span class="price">R$ 12,00</span>
+                        <button class="add-to-cart" data-id="6" data-name="Pastel de Carne com Queijo" data-price="12,00">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produto 7 -->
+            <div class="product-card">
+                <div class="product-image floating">
+                    <img src="PNG/fav-pastel.png" alt="PASTEL" style="width: 124px;">
+                </div>
+                <div class="product-info">
+                    <h3>Pastel de Pizza</h3>
+                    <p>Calabresa, Oregano, Queijo (+Complementos).</p>
+                    <div class="product-price">
+                        <span class="price">R$ 12,00</span>
+                        <button class="add-to-cart" data-id="7" data-name="Pastel de Pizza" data-price="12,00">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produto 8 -->
+            <div class="product-card">
+                <div class="product-image floating">
+                    <img src="PNG/fav-pastel.png" alt="PASTEL" style="width: 124px;">
+                </div>
+                <div class="product-info">
+                    <h3>Pastel Doce</h3>
+                    <p>Brigadeiro, (+Complementos).</p>
+                    <div class="product-price">
+                        <span class="price">R$ 12,00</span>
+                        <button class="add-to-cart" data-id="8" data-name="Pastel Doce" data-price="12,00">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produto 9 -->
+            <div class="product-card">
+                <div class="product-image floating">
+                    <img src="PNG/fav-pastel.png" alt="PASTEL" style="width: 124px;">
+                </div>
+                <div class="product-info">
+                    <h3>Pastel Fit</h3>
+                    <p>Feito na Air fryer (+Complementos).</p>
+                    <div class="product-price">
+                        <span class="price">R$ 12,00</span>
+                        <button class="add-to-cart" data-id="9" data-name="Pastel Fit" data-price="12,00">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+           
+    <!-- Sobre -->
+    <section class="about" id="about">
+        <div class="about-container">
+            <div class="about-image">
+                <i class="fas fa-store"></i>
+            </div>
+            <div class="about-content">
+                <h2>Nossa História</h2>
+                <p>A Pastel Dourado nasceu em 2024 com o propósito de trazer os melhores pastéis da região. Com receitas tradicionais e ingredientes selecionados, conquistamos o paladar de milhares de clientes.</p>
+                <p>Nossos pastéis são feitos artesanalmente todos os dias, garantindo frescor e qualidade em cada unidade. A massa é fina e crocante, e os recheios são preparados com muito cuidado e amor.</p>
+                <p>Visite nossa loja e experimente essa delícia que só a Pastel Dourado pode oferecer!</p>
+                <a href="#contact" class="btn">Visitar Loja</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato -->
+    <section class="contact" id="contact">
+        <div class="contact-container">
+            <div class="contact-info">
+                <h2>Entre em Contato</h2>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h3>Endereço</h3>
+                        <p>Rua Des. Francisco Luiz, 167 - CORDEIRO</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h3>Telefone</h3>
+                        <p>(81) 997897424</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h3>Horário de Funcionamento</h3>
+                        <p>Quarta a Domingo: 16h às 22h</p>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form">
+                <h2>Mande sua Mensagem</h2>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Nome</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Mensagem</label>
+                        <textarea id="message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Enviar Mensagem</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Pastel Dourado</h3>
+                <p>Os melhores pastéis da cidade, feitos com ingredientes frescos e muito amor!</p>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/pasteldourado__/"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/5581997897424"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Links Rápidos</h3>
+                <ul class="footer-links">
+                    <li><a href="#home">Início</a></li>
+                    <li><a href="#products">Cardápio</a></li>
+                    <li><a href="#about">Sobre</a></li>
+                    <li><a href="#contact">Contato</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Horário de Atendimento</h3>
+                <ul class="footer-links">
+                    <li>Quarta a Domingo: 16h-22h</li>
+                    <li>Feriados: 16h-20h</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2024 Pastel Dourado. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Modal do Carrinho -->
+    <div class="overlay" id="overlay"></div>
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-header">
+            <h2><i class="fas fa-shopping-cart"></i> Seu Carrinho</h2>
+            <button class="close-cart" id="closeCart">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="cart-items" id="cartItems">
+            <!-- Itens do carrinho serão inseridos aqui -->
+        </div>
+        
+        <div class="cart-totals">
+            <div class="total-row">
+                <span>Subtotal:</span>
+                <span id="subtotal">R$ 0,00</span>
+            </div>
+            <div class="total-row frete">
+                <span>Frete:</span>
+                <span id="freteValue">R$ 0,00</span>
+            </div>
+            <div class="total-row total">
+                <span>Total:</span>
+                <span id="total">R$ 0,00</span>
+            </div>
+        </div>
+        
+        <div class="checkout-form">
+            <div class="form-group">
+                <label for="customerName">Seu Nome:</label>
+                <input type="text" id="customerName" placeholder="Digite seu nome" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="shippingMethod">Forma de Entrega:</label>
+                <select id="shippingMethod" required>
+                    <option value="">Selecione uma opção</option>
+                    <option value="retirada">Retirar no local (Grátis)</option>
+                    <option value="entrega">Entrega (Calcular frete)</option>
+                </select>
+                        <div class="checkout-form">
+            <div class="form-group">
+                <label for="customerEndereço">Seu Endereço:</label>
+                <input type="text" id="customerEndereço" placeholder="Digite seu Endereço" required>
+            </div>
+            </div>
+            
+            <div id="freteSection" style="display: none;">
+                <div class="form-group">
+                    <label for="cep">CEP:</label>
+                    <input type="text" id="cep" placeholder="Digite seu CEP" maxlength="9">
+                </div>
+                <button type="button" id="calcularFrete" class="btn">Calcular Frete</button>
+                
+                <div class="shipping-options" id="shippingOptions" style="margin-top: 15px; display: none;">
+                    <h3>Opções de Frete:</h3>
+                    <!-- Opções de frete serão inseridas aqui -->
+                </div>
+            </div>
+            
+            <button type="button" id="finalizarCompra" class="btn" style="width: 100%; margin-top: 20px; background: var(--laranja); color: white;">
+                Finalizar Compra via WhatsApp
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Menu Mobile
+        const menuToggle = document.getElementById('menuToggle');
+        const menu = document.getElementById('menu');
+        
+        menuToggle.addEventListener('click', () => {
+            menu.classList.toggle('active');
+        });
+        
+        // Fechar menu ao clicar em um link
+        const menuLinks = document.querySelectorAll('nav a');
+        menuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.remove('active');
+            });
+        });
+        
+        // Carrinho de compras
+        const cartCount = document.querySelector('.cart-count');
+        const addToCartButtons = document.querySelectorAll('.add-to-cart');
+        const cartModal = document.getElementById('cartModal');
+        const openCartBtn = document.getElementById('openCart');
+        const closeCartBtn = document.getElementById('closeCart');
+        const overlay = document.getElementById('overlay');
+        const cartItems = document.getElementById('cartItems');
+        const subtotalElement = document.getElementById('subtotal');
+        const totalElement = document.getElementById('total');
+        const freteValue = document.getElementById('freteValue');
+        const shippingMethod = document.getElementById('shippingMethod');
+        const freteSection = document.getElementById('freteSection');
+        const calcularFreteBtn = document.getElementById('calcularFrete');
+        const shippingOptions = document.getElementById('shippingOptions');
+        const finalizarCompraBtn = document.getElementById('finalizarCompra');
+        const customerNameInput = document.getElementById('customerName');
+        const customerEndereçoInput = document.getElementById('customerEndereço');
+
+        let cart = [];
+        let selectedShipping = 0;
+        
+        // Abrir e fechar carrinho
+        openCartBtn.addEventListener('click', () => {
+            cartModal.classList.add('open');
+            overlay.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        closeCartBtn.addEventListener('click', () => {
+            cartModal.classList.remove('open');
+            overlay.classList.remove('show');
+            document.body.style.overflow = 'auto';
+        });
+        
+        overlay.addEventListener('click', closeCartBtn.click);
+        
+        // Adicionar produtos ao carrinho
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const id = button.getAttribute('data-id');
+                const name = button.getAttribute('data-name');
+                const price = parseFloat(button.getAttribute('data-price'));
+                
+                // Verificar se o produto já está no carrinho
+                const existingItem = cart.find(item => item.id === id);
+                
+                if (existingItem) {
+                    existingItem.quantity++;
+                } else {
+                    cart.push({
+                        id,
+                        name,
+                        price,
+                        quantity: 1
+                    });
+                }
+                
+                updateCart();
+                
+                // Animação de adicionar ao carrinho
+                button.innerHTML = '<i class="fas fa-check"></i>';
+                button.style.backgroundColor = '#4CAF50';
+                
+                setTimeout(() => {
+                    button.innerHTML = '<i class="fas fa-plus"></i>';
+                    button.style.backgroundColor = '';
+                }, 1000);
+            });
+        });
+        
+        // Atualizar carrinho
+        function updateCart() {
+            cartCount.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+            
+            // Limpar itens
+            cartItems.innerHTML = '';
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p style="text-align: center; padding: 20px;">Seu carrinho está vazio</p>';
+                subtotalElement.textContent = 'R$ 0,00';
+                freteValue.textContent = 'R$ 0,00';
+                totalElement.textContent = 'R$ 0,00';
+                return;
+            }
+            
+            // Adicionar itens
+            cart.forEach(item => {
+                const itemElement = document.createElement('div');
+                itemElement.className = 'cart-item';
+                itemElement.innerHTML = `
+                    <div class="item-info">
+                        <div class="item-name">${item.name}</div>
+                        <div class="item-price">R$ ${item.price.toFixed(2)}</div>
+                        <div class="item-quantity">
+                            <button class="quantity-btn minus" data-id="${item.id}">-</button>
+                            <span class="quantity-value">${item.quantity}</span>
+                            <button class="quantity-btn plus" data-id="${item.id}">+</button>
+                        </div>
+                    </div>
+                    <button class="remove-item" data-id="${item.id}">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                `;
+                cartItems.appendChild(itemElement);
+            });
+            
+            // Atualizar subtotal
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            subtotalElement.textContent = `R$ ${subtotal.toFixed(2)}`;
+            
+            // Atualizar total
+            updateTotal(subtotal);
+            
+            // Adicionar eventos aos botões de quantidade e remover
+            document.querySelectorAll('.quantity-btn.minus').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const id = btn.getAttribute('data-id');
+                    const item = cart.find(item => item.id === id);
+                    if (item.quantity > 1) {
+                        item.quantity--;
+                    } else {
+                        cart = cart.filter(item => item.id !== id);
+                    }
+                    updateCart();
+                });
+            });
+            
+            document.querySelectorAll('.quantity-btn.plus').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const id = btn.getAttribute('data-id');
+                    const item = cart.find(item => item.id === id);
+                    item.quantity++;
+                    updateCart();
+                });
+            });
+            
+            document.querySelectorAll('.remove-item').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const id = btn.getAttribute('data-id');
+                    cart = cart.filter(item => item.id !== id);
+                    updateCart();
+                });
+            });
+        }
+        
+        // Atualizar total com frete
+        function updateTotal(subtotal) {
+            const total = subtotal + selectedShipping;
+            freteValue.textContent = `R$ ${selectedShipping.toFixed(2)}`;
+            totalElement.textContent = `R$ ${total.toFixed(2)}`;
+        }
+        
+        // Mostrar/ocultar seção de frete
+        shippingMethod.addEventListener('change', () => {
+            if (shippingMethod.value === 'entrega') {
+                freteSection.style.display = 'block';
+            } else {
+                freteSection.style.display = 'none';
+                selectedShipping = 0;
+                const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                updateTotal(subtotal);
+            }
+        });
+        
+        // Calcular frete
+        calcularFreteBtn.addEventListener('click', () => {
+            const cep = document.getElementById('cep').value;
+            
+            // Simulação de cálculo de frete
+            if (cep && cep.length === 9) {
+                shippingOptions.style.display = 'block';
+                shippingOptions.innerHTML = `
+                    <h3>Opções de Frete:</h3>
+                    <div class="shipping-option">
+                        <input type="radio" id="frete-rapido" name="shipping" value="15,00" checked>
+                        <label for="frete-rapido">Entrega Rápida - R$ 15,00</label>
+                    </div>
+                    <div class="shipping-option">
+                        <input type="radio" id="frete-economico" name="shipping" value="7,50">
+                        <label for="frete-economico">Entrega Econômica - R$ 7,50</label>
+                    </div>
+                    <div class="shipping-option">
+                        <input type="radio" id="frete-gratis" name="shipping" value="0">
+                        <label for="frete-gratis">Retirada no Local - Grátis</label>
+                    </div>
+                `;
+                
+                // Adicionar evento aos radios
+                document.querySelectorAll('input[name="shipping"]').forEach(radio => {
+                    radio.addEventListener('change', () => {
+                        selectedShipping = parseFloat(radio.value);
+                        const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                        updateTotal(subtotal);
+                    });
+                });
+                
+                // Selecionar a primeira opção por padrão
+                selectedShipping = 10;
+                const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                updateTotal(subtotal);
+            } else {
+                alert('Por favor, digite um CEP válido no formato 00000-000');
+            }
+        });
+        
+        // Finalizar compra via WhatsApp
+        finalizarCompraBtn.addEventListener('click', () => {
+            if (cart.length === 0) {
+                alert('Seu carrinho está vazio! Adicione produtos antes de finalizar.');
+                return;
+            }
+            
+            const customerName = customerNameInput.value;
+            if (!customerName) {
+                alert('Por favor, informe seu nome.');
+                return;
+            }
+
+                        const customerEndereço = customerEndereçoInput.value;
+            if (!customerEndereço) {
+                alert('Por favor, informe seu endereço.');
+                return;
+            }
+            
+            // Montar mensagem para WhatsApp
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const total = subtotal + selectedShipping;
+            
+            let message = `Olá Pastel Dourado! Meu nome é ${customerName}. Gostaria de fazer um pedido:\n\n`;
+            
+            cart.forEach(item => {
+                message += `${item.name} - ${item.quantity} un. - R$ ${(item.price * item.quantity).toFixed(2)}\n`;
+            });
+            
+            message += `\nSubtotal: R$ ${subtotal.toFixed(2)}\n`;
+            message += `Frete: R$ ${selectedShipping.toFixed(2)}\n`;
+            message += `Total: R$ ${total.toFixed(2)}\n\n`;
+            
+            if (shippingMethod.value === 'entrega') {
+                const cep = document.getElementById('cep').value;
+                message += `Forma de entrega: Entrega\n`;
+                message += `CEP: ${cep}\n`;
+            } else {
+                message += `Forma de entrega: Retirada no local\n`;
+            }
+            
+            message += `\nPor favor, confirme meu pedido. Obrigado!`;
+            
+            // Codificar a mensagem para URL
+            const encodedMessage = encodeURIComponent(message);
+            
+            // Número do WhatsApp da Pastelaria (substitua pelo número real)
+            const whatsappNumber = "5581997897424";
+            
+            // Abrir WhatsApp
+            window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
+        });
+        
+        // Formulário de contato
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Mensagem enviada com sucesso! Entraremos em contato em breve.');
+            contactForm.reset();
+        });
+        
+        // Scroll suave
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                window.scrollTo({
+                    top: targetElement.offsetTop - 70,
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Inicializar carrinho
+        updateCart();
+    </script>
+</body>
+</html>
